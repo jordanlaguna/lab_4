@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Combo'),
         backgroundColor: const Color.fromARGB(255, 95, 222, 99),
         leading: IconButton(
