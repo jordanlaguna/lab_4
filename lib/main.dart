@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lab_4/sql/database_helper.dart';
-
+import 'package:lab_4/Home/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelper databaseHelper = DatabaseHelper();
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   final DatabaseHelper databaseHelper;
 
   const MyApp({Key? key, required this.databaseHelper}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: LoginPage(databaseHelper: databaseHelper),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+      );
+      home: const MyHomePage(title: 'Flutter Demo Home Page');
+      routes: {
+        '/second': (context) => const Home();
+      },
+      debugShowCheckedModeBanner: false;
     );
   }
 }
@@ -37,6 +46,22 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
       ),
       body: Center(
         child: Column(
@@ -82,6 +107,11 @@ class LoginPage extends StatelessWidget {
                 );
               },
               child: const Text('No tienes una cuenta? Regístrate aquí'),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/second');
+              },
+              child: const Text('Go to Second Page'),
             ),
           ],
         ),
