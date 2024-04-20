@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lab_4/Home/home.dart';
+import 'package:lab_4/sql/database_helpeer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseHelper().initDatabase();
   runApp(const MyApp());
 }
 
@@ -28,8 +31,28 @@ class MyApp extends StatelessWidget {
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+<<<<<<< Updated upstream
   @override
   Widget build(BuildContext context) {
+=======
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late final DatabaseHelper databaseHelper;
+  @override
+  void initState() {
+    super.initState();
+    databaseHelper = DatabaseHelper(); // Inicializa la variable databaseHelper
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
+>>>>>>> Stashed changes
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     return Scaffold(
@@ -38,22 +61,45 @@ class LoginPage extends StatelessWidget {
       ),
       body: Center(
         child: Padding(
+<<<<<<< Updated upstream
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+=======
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Register a new account:',
+              ),
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                ),
+              ),
+              const SizedBox(height: 10), // Espacio entre los campos
+>>>>>>> Stashed changes
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                 ),
               ),
+<<<<<<< Updated upstream
               TextFormField(
                 obscureText: true,
+=======
+              const SizedBox(height: 10),
+              TextFormField(
+>>>>>>> Stashed changes
                 controller: passwordController,
                 decoration: const InputDecoration(
                   labelText: 'Password',
                 ),
+<<<<<<< Updated upstream
               ),
               ElevatedButton(
                 onPressed: () {
@@ -132,6 +178,27 @@ class RegisterPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: const Text('Ya tienes una cuenta? Inicia sesión aquí'),
+=======
+                obscureText: true, // Para ocultar la contraseña
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  int userId = await databaseHelper.registerUser(
+                    nameController.text,
+                    emailController.text,
+                    passwordController.text,
+                  );
+                  print('User registered with ID: $userId');
+                },
+                child: const Text('Register'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/second');
+                },
+                child: const Text('Go to Second Page'),
+>>>>>>> Stashed changes
               ),
             ],
           ),

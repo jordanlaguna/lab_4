@@ -46,7 +46,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Combo'),
+        title: const Text(
+          'Combo',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold, // Color blanco para el título
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 95, 222, 99),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
