@@ -50,10 +50,10 @@ class DatabaseHelper {
   }
 
   Future<List<Map<String, dynamic>>> loginUser(
-      String email, String password) async {
+      String name, String email, String password) async {
     Database db = await database;
-    return await db.rawQuery('''
-      SELECT * FROM Users WHERE email = ? AND password = ?
-    ''', [email, password]);
+    return await db.rawQuery(
+        '''SELECT * FROM Users WHERE name = ? AND email = ? AND password = ?''',
+        [name, email, password]);
   }
 }
