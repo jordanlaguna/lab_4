@@ -36,8 +36,7 @@ class _HomePageState extends State<HomePage> {
     'Coca-cola',
     'Hamburguesa',
     'Papas',
-    'Pollo',
-    'Pizza'
+    'Pollo' 
   ];
   List<String> productosGuardados = [];
 

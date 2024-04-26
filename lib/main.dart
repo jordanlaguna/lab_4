@@ -216,12 +216,6 @@ class RegisterPage extends StatelessWidget {
                 },
                 child: const Text('Register'),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/second');
-                },
-                child: const Text('Go to Second Page'),
-              ),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
